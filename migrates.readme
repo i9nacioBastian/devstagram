@@ -1,0 +1,74 @@
+#######################
+PARA MIGRAR
+#######################
+
+sail php artisan migrate
+sail artisan migrate
+
+#######################
+PARA DEVOLVER MIGRACIÓN
+#######################
+
+sail artisan migrate:rollback
+
+
+#######################
+PARA DEVOLVER VARIAS MIGRACIONES
+#######################
+
+sail artisan migrate:rollback --step=5
+
+#######################
+PARA CREAR MIGRACIONES
+#######################
+
+sail php artisan make:migration nombre_migracion
+
+sail php artisan migrate:refresh #limpia las tablas
+
+sail php artisan make:migration nombre_migracion_table (Ej: sail artisan make:migration create_posts_table)
+
+#######################
+para crear al mismo tiempo modelo y migración 
+#######################
+sail php artisan make:model --migration --factory Post
+sail php artisan make:model --migration --controller --factory Post
+sail artisan make:model Follower -mc (Crea modelo, migración y controlador)
+#######################
+FACTORY
+#######################
+El factory sirve para realizar pruebas a la base de datos
+sail php artisan make:factory NombredelFactory
+
+Para correr el factory se realiza
+    sail artisan tinker
+Lo cual abrirá 
+Psy Shell v0.11.22 (PHP 8.2.12 — cli) by Justin Hileman
+> $usuario = User::find(5);
+#######################
+Otra opción FACTORY
+#######################
+> App\Models\Post::factory()
+= Database\Factories\PostFactory {#7294}
+
+Ó
+
+PostFactory::factory()->times(200)->create();
+ App\Models\Post::factory()->times(200)->create();
+- times es la cantidad que deseas crear o ejecutar la pruebas
+
+
+##################
+POLICY
+##################
+sail artisan make:policy PostPolicy --model=Post
+
+
+##LIMPIA CACHÉ
+sail artisan route:cache 
+
+#LISTA TODAS LAS RUTAS
+sail artisan route:list 
+
+#LIMPIAR VISTAS 
+ sail artisan view:clear
